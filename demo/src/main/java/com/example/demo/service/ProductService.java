@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//вся "product" часть приложения использовалась в качестве примера-скелета из обучающих уроков и не использовалась при нагрузке
 @Service
 public class ProductService {
 
@@ -31,7 +32,6 @@ public class ProductService {
     }
 
     public void addProduct(Product prod){
-        //System.out.println(prod);
         products.add(prod);
     }
 

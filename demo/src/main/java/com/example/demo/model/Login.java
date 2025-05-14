@@ -30,20 +30,16 @@ public class Login {
 //    }
 
 
-    //public default constructor чтобы обойти ошибку
+    //public default constructor чтобы обойти ошибку:
     //"Parameter 0 of constructor in com.example.demo.model.Product required a bean of type 'int' that could not be found."
-    //но почему так?
     public Login(){
     }
 
-    //@Autowired //можно использовать вместо public default constructor чтобы обойти ошибку
+    //@Autowired //можно использовать вместо public default constructor чтобы обойти ошибку:
     //"Parameter 0 of constructor in com.example.demo.model.Product required a bean of type 'int' that could not be found."
-    //но как правильно?
     public Login(String login, String pass) {
         this.login = login;
         this.pass = pass;
     }
-
-
 
 }

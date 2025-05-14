@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Product;
 import com.example.demo.service.DoubleStringService;
-import com.example.demo.service.ProductService;
-import org.apache.coyote.Response;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +16,10 @@ public class DoubleStringController {
         this.stringService = stringService;
     }
 
+    //в нагрузке использовалась строка "This is a string." для передачи и удвоения
     @PostMapping("/poststring")
     public String poststring(@RequestBody String string){
         return stringService.doubleString(string);
     }
-
 
 }

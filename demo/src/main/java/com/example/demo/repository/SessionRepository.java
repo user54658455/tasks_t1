@@ -33,6 +33,9 @@ public class SessionRepository {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + sessions);
     }
 
+    //пробовал сократить размер хранилища сессий в процессе тестов, но удаление происходит не всегда из-за открытой модели нагрузки
+    //все равно заглушка съедает место на жетком диске с высокой скоростью
+    //в итоге не используется
     public void removeSession(String generatedToken){
         Session sxdrg = getSessionByToken(generatedToken);
         sessions.remove(sxdrg);

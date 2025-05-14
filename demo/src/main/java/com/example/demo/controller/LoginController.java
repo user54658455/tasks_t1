@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/auth")
 public class LoginController {
 
+    //не использовалось в нагрузочном скрипте
     @GetMapping("/login")
     public String login(){
         return "This is result of login get request: should be login page with forms, but not usefull for stub";
@@ -24,12 +25,6 @@ public class LoginController {
         this.service = service;
         this.loginRepository = loginRepository;
     }
-
-//    //это constructor injection (рекомендуемый вариант, не нуждается в аннотациях)
-//    private LoginRepository loginRepository;
-//    public LoginController(LoginRepository loginRepository){
-//        this.loginRepository = loginRepository;
-//    }
 
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password){
@@ -47,10 +42,5 @@ public class LoginController {
     public List<Login> getLogins(){
         return loginRepository.getLogins();
     }
-
-//    @PostMapping("/logincheck")
-//    public String logincheck(@RequestParam String username, @RequestParam String password) {
-//        return String.valueOf(service.loginAndPassCheck(username, password));
-//    }
 
 }

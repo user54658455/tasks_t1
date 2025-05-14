@@ -13,11 +13,6 @@ import java.util.List;
 @RequestMapping("/session")
 public class SessionController {
 
-//    @GetMapping("/getsession")
-//    public boolean session(){
-
-//    }
-
     //это constructor injection (рекомендуемый вариант, не нуждается в аннотациях)
     private SessionService service;
     private SessionRepository sessionRepository;
@@ -25,12 +20,6 @@ public class SessionController {
         this.service = service;
         this.sessionRepository = sessionRepository;
     }
-
-//    //это constructor injection (рекомендуемый вариант, не нуждается в аннотациях)
-//    private SessionRepository sessionRepository;
-//    public SessionController(SessionRepository sessionRepository){
-//        this.sessionRepository = sessionRepository;
-//    }
 
     @PostMapping("/sessionproof")
     public ResponseEntity<?> sessionproof(@RequestParam String token){

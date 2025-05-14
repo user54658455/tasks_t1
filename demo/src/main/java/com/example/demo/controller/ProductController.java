@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//вся "product" часть приложения использовалась в качестве примера-скелета из обучающих уроков и не использовалась при нагрузке
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 
-//    //@Autowired  //это field injection (НЕ рекомендуемый вариант, private можно не указывать)
+//    //@Autowired  //это field injection (не рекомендуемый вариант)
 //    private ProductService service;
 
 //    //это setter injection (допустимый вариант)
@@ -27,16 +28,19 @@ public class ProductController {
         this.service = service;
     }
 
+    //не использовалось в нагрузочном скрипте
     @GetMapping("/getall")
     public List<Product> getProducts(){
         return service.getProducts();
     }
 
+    //не использовалось в нагрузочном скрипте
     @GetMapping("/{prodId}")
     public Product getProductById(@PathVariable int prodId) {
         return service.getProductById(prodId);
     }
 
+    //не использовалось в нагрузочном скрипте
     @PostMapping("/newproduct")
     public void addProduct(@RequestBody Product prod){
         service.addProduct(prod);

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.annotation.Target;
 
+//вся "product" часть приложения использовалась в качестве примера-скелета из обучающих уроков и не использовалась при нагрузке
 //@Component  //выставлялось в видеоуроке, но без этого работает
 public class Product {
 
@@ -46,15 +47,13 @@ public class Product {
 //    }
 
 
-    //public default constructor чтобы обойти ошибку
+    //public default constructor добавлен чтобы обойти ошибку:
     //"Parameter 0 of constructor in com.example.demo.model.Product required a bean of type 'int' that could not be found."
-    //но почему так?
     public Product(){
     }
 
-    //@Autowired //можно использовать вместо public default constructor чтобы обойти ошибку
+    //@Autowired //можно использовать вместо public default constructor чтобы обойти ошибку:
     //"Parameter 0 of constructor in com.example.demo.model.Product required a bean of type 'int' that could not be found."
-    //но как правильно?
     public Product(int prodId, String prodName, int prodPrice) {
         this.prodId = prodId;
         this.prodName = prodName;

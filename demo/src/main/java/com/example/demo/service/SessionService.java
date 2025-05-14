@@ -12,24 +12,11 @@ public class SessionService {
         this.sessionRepository = sessionRepository;
     }
 
-//    public String loginAndPassCheck(String username, String password){
-//        //System.out.println(getCredByLogin(username).getPass());
-//        if (repository.getCredByLogin(username).getPass().equals(password)){
-//            return generateNewToken();
-//        }
-//        else{
-//            return "false";
-//        }
-//    }
-
     public String sessionCheckWithToken(String token){
         if (sessionRepository.getSessionByToken(token) != null){
-//            if (sessionRepository.getSessionByToken(token).getUserToken().equals(token)){
-//                return "session exists with given token";
-//            }
-//            else{
-//                return "false";
-//            }
+            //пробовал сократить размер хранилища сессий в процессе тестов, но удаление происходит не всегда из-за открытой модели нагрузки
+            //все равно заглушка съедает место на жетком диске с высокой скоростью
+            //в итоге не используется:
             //sessionRepository.removeSession(token);
             return "session exists with given token";
         }
@@ -37,21 +24,5 @@ public class SessionService {
             return "false";
         }
     }
-
-//    public String sessionCheckNoToken(String username){
-//        if (sessionRepository.getSessionByToken(username) != null){
-//            if (sessionRepository.getSessionByToken(username).getUsername().equals(username)){
-//                return "session exists, but token not checked";
-//            }
-//            else{
-//                return "false";
-//            }
-//        }
-//        else{
-//            return "false";
-//        }
-//    }
-
-
 
 }

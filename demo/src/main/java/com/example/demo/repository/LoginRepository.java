@@ -9,6 +9,7 @@ import java.util.*;
 @Repository
 public class LoginRepository {
 
+    //сразу задаю три учетки, была идея реализовать через вызов метода с передачей количества пользователей в параметре, но сократил из-за времени
     List<Login> logins = new ArrayList<>(
             Arrays.asList(
                     new Login("user1", "pass1"),
@@ -28,7 +29,6 @@ public class LoginRepository {
                 .findFirst()
                 .orElse(null);
     }
-
 
     private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
     private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
