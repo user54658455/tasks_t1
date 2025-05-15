@@ -30,16 +30,17 @@ public class SessionRepository {
 
     public void addSession(String generatedToken){
         sessions.add(new Session(generatedToken));
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + sessions);
+        //место на жестком диске съедал этот вывод в консоль
+        //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + sessions);
     }
 
     //пробовал сократить размер хранилища сессий в процессе тестов, но удаление происходит не всегда из-за открытой модели нагрузки
-    //все равно заглушка съедает место на жетком диске с высокой скоростью
+    //все равно заглушка съедает место на жестком диске с высокой скоростью
     //в итоге не используется
     public void removeSession(String generatedToken){
         Session sxdrg = getSessionByToken(generatedToken);
         sessions.remove(sxdrg);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! deleted" + sessions);
+        //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! deleted" + sessions);
     }
 
 }
