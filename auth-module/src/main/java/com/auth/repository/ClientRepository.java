@@ -1,0 +1,38 @@
+package com.auth.repository;
+
+import com.common.model.Client;
+import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
+@Repository
+public class ClientRepository {
+    private static final Map<String, Client> clients = new HashMap<>();
+
+    public static Client save(Client client) {
+        clients.put(client.getId(), client);
+        return client;
+    }
+
+    public static Client replace(Client client) {
+        clients.replace(client.getId(), client);
+        return client;
+    }
+
+    public static Optional<Client> findByUsername(String username) {
+        return clients.values().stream()
+                .filter(c -> c.getUsername().equals(username))
+                .findFirst();
+    }
+
+    public static Optional<Client> findById(String id) {
+        return Optional.ofNullable(clients.get(id));
+    }
+
+    public static Collection<Client> getAllClients() {
+        return clients.values();
+    }
+}
