@@ -2,7 +2,6 @@ package com.auth.repository;
 
 import com.common.model.Client;
 import org.springframework.stereotype.Repository;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

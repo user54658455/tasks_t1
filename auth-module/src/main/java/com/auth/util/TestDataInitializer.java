@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Random;
 
-@Component    //why this is here?
+@Component
 public class TestDataInitializer implements CommandLineRunner {
 
     private final Faker faker = new Faker();
@@ -51,7 +51,6 @@ public class TestDataInitializer implements CommandLineRunner {
         }
 
         System.out.println("🎉 Генерация тестовых данных завершена!");
-
     }
 
 }

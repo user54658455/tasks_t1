@@ -1,7 +1,6 @@
 package com.transaction.service;
 
 import com.transaction.repository.AccountRepository;
-//import com.bankapp.repository.ClientRepository;
 import com.common.model.Account;
 import com.common.model.Client;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +22,7 @@ public class AccountService {
     private  final AccountRepository accountRepository;
 
     public Account createAccount(String clientId) {
-        //send client id to auth service and get client entity here
+
         RestTemplate template = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
@@ -41,50 +40,13 @@ public class AccountService {
                 Client.class
         );
 
-
-        //create to this client entity account here (should i save client entity here after that? seems like i do not have clients here)
         Account account = new Account();
         clientOpt.getBody().getAccounts().add(account);
-        //System.out.println(clientOpt.getBody());
 
-
-        //send renewed client entity (with account) to auth service
-        // authServiceAddress + "/auth/renewclient"
         template.postForLocation(authServiceAddress + "/auth/renewclient", clientOpt.getBody());
-        //template.postForLocation(authServiceAddress + "/auth/renewclient", clientOpt);
-//        ResponseEntity<Client> response = template.exchange(
-//                authServiceAddress + "/auth/renewclient",
-//                HttpMethod.POST,
-//                clientOpt.getBody(),
-//                new ParameterizedTypeReference<Client>() {}
-//        );
-//        return response.getBody();
-
-
-        //replace client entity with account on auth service
-
-
-
-
-        //get client as entity here (and put it into "clientOpt") from auth service
-
-//        String clientOpt = template.getForEntity(authServiceAddress + "/findclientbyid", String.class).getBody();
-//        template.postForLocation(authServiceAddress + "/findclientbyid", clientId);
-//        Account request = new Account();
-//        HttpEntity<Account> account = new HttpEntity<>(request);
-
-        //System.out.println(clientOpt);
 
         return null;
 
-        //Optional<Client> clientOpt = ClientRepository.findById(clientId);
-//        if (clientOpt.isEmpty()) {
-//            throw new RuntimeException("Client not found");
-//        }
-//
-//        Account account = new Account();
-//        clientOpt.get().getAccounts().add(account);
-//        return accountRepository.save(account);
     }
 
     public Optional<Account> findByNumber(String number) {

@@ -3,7 +3,7 @@ package com.auth.util;
 import com.common.model.Client;
 import org.springframework.stereotype.Component;
 
-@Component    //why this is here?
+@Component
 public class SessionManager {
     private Client loggedInClient;
 

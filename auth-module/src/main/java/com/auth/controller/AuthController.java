@@ -195,23 +195,6 @@ public class AuthController {
 
 
 
-
-//    @Operation(summary = "Получение пользователя по идентификатору.",
-//            description = "Получает пользователя используя идентификатор (id).")
-//    @PostMapping("/renewclient")
-//    public void renewclient(
-//            @Parameter(
-//                    required = true,
-//                    name = "client",
-//                    description = "новый клиент",
-//                    common = "?"
-//            )
-//            @RequestParam Client client
-//    ) {
-//        System.out.println(client);
-//        ClientRepository.replace(client);
-//    }
-
     @Operation(summary = "Получение пользователя по идентификатору.",
             description = "Получает пользователя используя идентификатор (id).")
     @PostMapping("/renewclient")

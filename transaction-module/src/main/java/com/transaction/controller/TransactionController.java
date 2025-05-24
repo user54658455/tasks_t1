@@ -11,7 +11,6 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -62,15 +61,13 @@ public class TransactionController {
                     example = "93a97218648c"
             )
             @RequestParam String accountNumber) {
+
         RestTemplate template= new RestTemplate();
-        //Client res=template.getForEntity("http://localhost:8030/isLogged",Client.class).getBody();
         boolean res = template.getForObject(authServiceAddress + "/auth/isloggedin", boolean.class);
-        //boolean res = sessionManager.isLoggedIn();
 
         if (!res/*.equals("не аутентифицирован")*/) {
             return "❌ Ошибка: Сначала войдите в систему!";
         }
-
 
         UriComponentsBuilder uriBuilder = UriComponentsBuilder
                 .fromHttpUrl(authServiceAddress + "/auth/findbyusername")
@@ -88,8 +85,6 @@ public class TransactionController {
                 Client.class
         );
 
-
-        //Optional<Client> recipientOpt = ClientRepository.findByUsername(username);
         if (response.getBody().toString().isEmpty()) {
             return "❌ Ошибка: Получатель не найден!";
         }
@@ -123,25 +118,17 @@ public class TransactionController {
                     example = "20"
             )
             @RequestParam double amount) {
-        RestTemplate template= new RestTemplate();
-        //Client res=template.getForEntity("http://localhost:8030/isLogged",Client.class).getBody();
-        boolean res = template.getForObject(authServiceAddress + "/auth/isloggedin", boolean.class);
-        //boolean res = sessionManager.isLoggedIn();
 
-        if (!res/*.equals("не аутентифицирован")*/) {
+        RestTemplate template= new RestTemplate();
+        boolean res = template.getForObject(authServiceAddress + "/auth/isloggedin", boolean.class);
+
+        if (!res) {
             return "❌ Ошибка: Сначала войдите в систему!";
         }
-
-
 
         if (recipientClient == null || recipientAccount == null) {
             return "❌ Ошибка: Сначала выберите получателя!";
         }
-
-
-
-        //Client sender = sessionManager.getLoggedInClient();
-        // authServiceAddress + "/auth/getloggedinclient"
 
         ResponseEntity<Client> response = template.exchange(
                 authServiceAddress + "/auth/getloggedinclient",
@@ -149,9 +136,6 @@ public class TransactionController {
                 null,
                 new ParameterizedTypeReference<Client>() {}
         );
-        //System.out.println(response.getBody());
-
-
 
         Optional<Account> senderAccountOpt = response.getBody().getAccounts().stream().findFirst();
         if (senderAccountOpt.isEmpty()) {
@@ -167,11 +151,8 @@ public class TransactionController {
         // Обновляем балансы
         double newSenderAccountBalance = senderAccount.getBalance() - amount;
         senderAccount.setBalance(newSenderAccountBalance);
-
         double newRecipientAccountBalance = recipientAccount.getBalance() + amount;
         recipientAccount.setBalance(newRecipientAccountBalance);
-
-
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -201,9 +182,7 @@ public class TransactionController {
                 Client.class
         );
 
-
         return "✅ Перевод завершен! " + amount + "₽ переведено на счет " + recipientAccount.getAccountNumber();
-        //return "some string: " + senderAccount.getBalance() + "!!!!!!!!!!" + recipientAccount.getBalance();
     }
 
 }
